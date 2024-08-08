@@ -36,9 +36,9 @@ contract Raffle is VRFConsumerBaseV2Plus {
     error Raffle__TransferFailed();
     error Raffle__RaffleNotOpen();
     error Raffle__UpkeepNotNeeded(
-        uint256 balance,
-        uint256 playersLength,
-        uint256 raffleState
+        uint256 balance, // 合约余额
+        uint256 playersLength, // 玩家数量
+        uint256 raffleState // 抽奖状态
     );
 
     enum RaffleState {
@@ -106,11 +106,16 @@ contract Raffle is VRFConsumerBaseV2Plus {
     function checkUpkeep(
         bytes memory /* checkData */
     ) public view returns (bool upkeepNeeded, bytes memory /* preformData */) {
+        // 时间间隔是否已过
         bool timeHasPassed = ((block.timestamp - s_lastTimeStamp) >=
             i_interval);
+        // 抽奖状态是否为开放
         bool isOpen = s_raffleState == RaffleState.OPEN;
+        // 合约是否有余额
         bool hasBalance = address(this).balance > 0;
+        // 是否有玩家参与抽奖
         bool hasPlayers = s_players.length > 0;
+
         upkeepNeeded = timeHasPassed && isOpen && hasBalance && hasPlayers;
         return (upkeepNeeded, "");
     }
