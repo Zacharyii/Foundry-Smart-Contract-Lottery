@@ -21,9 +21,9 @@ contract HelperConfig is CodeConstants, Script {
         uint256 entranceFee;
         uint256 interval;
         address vrfCoordinator;
-        bytes32 gasLane;
-        uint32 callbackGasLimit;
+        bytes32 gasLane;       
         uint256 subscriptionId;
+        uint32 callbackGasLimit;
     }
 
     NetworkConfig public localNetworkConfig;
@@ -56,8 +56,8 @@ contract HelperConfig is CodeConstants, Script {
                 interval: 30, // 30秒
                 vrfCoordinator: 0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B,
                 gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae, // 200 gwei key_hash
-                callbackGasLimit: 500000,
-                subscriptionId: 0
+                subscriptionId: 0,
+                callbackGasLimit: 500000
             });
     }
 
@@ -78,9 +78,9 @@ contract HelperConfig is CodeConstants, Script {
             entranceFee: 0.01 ether, // 1e16
             interval: 30, // 30 seconds
             vrfCoordinator: address(vrfCoordinatorMock),
-            gasLane: 0x8077df514608a09f83e4e8d300645594e5d7234665448ba83f51a50f842bd3d9,
-            callbackGasLimit: 500000,
-            subscriptionId: 0
+            gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
+            subscriptionId: 0,
+            callbackGasLimit: 500000            
         });
         return localNetworkConfig;
     }

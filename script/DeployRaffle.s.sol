@@ -3,6 +3,7 @@ pragma solidity 0.8.19;
 
 import {Script} from "forge-std/Script.sol";
 import {Raffle} from "../src/Raffle.sol";
+import {HelperConfig} from "script/HelperConfig.s.sol";
 
 contract DeployRaffle is Script {
     function run() public {}
@@ -18,9 +19,9 @@ contract DeployRaffle is Script {
             config.entranceFee,
             config.interval,
             config.vrfCoordinator,
-            config.gasLane,
-            config.callbackGasLimit,
-            config.subscriptionId
+            config.gasLane,          
+            config.subscriptionId,
+            config.callbackGasLimit
         );
         vm.stopBroadcast();
         return (raffle, helperConfig);
